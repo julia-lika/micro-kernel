@@ -1,7 +1,7 @@
 # Microkernel – Bootloader + Kernel (VGA + Teclado + Pedra Papel Tesoura)
 
 ## O que foi feito
-[Para ver o video clique aqui](video.mp4)
+[Para ver o video clique aqui](https://drive.google.com/file/d/1YzVOhDmsXLHzrboSIb-ZAT8_BO04YfEW/view?usp=sharing)
 
 - **Bootloader em Assembly (16-bit)**: carrega `KERNEL_SECTORS` da própria imagem para o endereço físico `0x00010000`, configura uma **GDT mínima**, entra em **Protected Mode** (32-bit) e chama `kernel_main`.
 - **Kernel em C (32-bit, freestanding)**:
