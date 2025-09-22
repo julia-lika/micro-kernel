@@ -1,4 +1,4 @@
-# Microkernel – Bootloader + Kernel (VGA + Teclado + Jogo da Forca)
+# Microkernel – Bootloader + Kernel (VGA + Teclado + Pedra Papel Tesoura)
 
 ## O que foi feito
 [Para ver o video clique aqui](video.mp4)
@@ -27,5 +27,5 @@ gcc -m32 -ffreestanding -fno-pie -c rps_game.c -o rps_game.o
 
 ld -m elf_i386 -T link.ld -o kernel.elf \               
    kernel_asm.o kernel.o keyboard_map.o rps_game.o
-   
+
 qemu-system-i386 -kernel kernel.elf 
