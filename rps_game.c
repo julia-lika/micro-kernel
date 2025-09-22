@@ -39,7 +39,7 @@ static int decide(RPSChoice p, RPSChoice a) {
     return -1;
 }
 
-// LCG: baratinho e suficiente p/ um joguinho
+// Linear Congruential Generator
 static unsigned int lcg(unsigned int x) {
     return x * 1664525u + 1013904223u;
 }
@@ -49,7 +49,6 @@ static RPSChoice cpu_random_choice(void) {
     return (RPSChoice)(rng_seed % 3);
 }
 
-// Para dar um “temperinho” no seed, misturamos o último caractere pressionado
 static void mix_seed(char key_char) {
     rng_seed ^= ((unsigned int)key_char << 17) ^ ((unsigned int)key_char << 5);
 }
@@ -65,13 +64,13 @@ void rps_init_game(void) {
     score_player = 0;
     score_cpu = 0;
     rng_seed ^= 0x9E3779B9u; // embaralha um pouco
-}
+} // É chamada no kmain()
 
 void rps_reset_game(void) {
     state = RPS_ONGOING;
     player_choice = RPS_NONE;
     cpu_choice = RPS_NONE;
-}
+} // Update no placar
 
 void rps_update_screen(void) {
     // Cabeçalho
@@ -121,9 +120,6 @@ void rps_update_screen(void) {
         // dica inicial em outra linha (ex: linha 10)
         print_at(9, 0, "Pressione r/p/s para jogar.", COLOR_FAINT);
     }
-
-    // Dica cursor (não digitamos linhas, mas mantém visual coerente)
-    set_cursor(11, 0);
 }
 
 void rps_process_input(char key_char) {
@@ -159,8 +155,8 @@ void rps_process_input(char key_char) {
             state = RPS_ROUND_OVER;
         }
     } else {
-        // rodada encerrada: “n” abre outra; qualquer outra tecla ignora
-        if (key_char == 'n') {
+        // rodada encerrada: “ ” abre outra; qualquer outra tecla ignora
+        if (key_char == ' ') {
             rps_reset_game();
         }
     }

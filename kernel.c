@@ -153,14 +153,6 @@ void kprint_char(char c, int row, int col, char color) {
     vidptr[offset + 1] = color;
 }
 
-void set_cursor(int row, int col){
-	unsigned short pos = row * COLUMNS_IN_LINE + col;
-	write_port(0x3D4, 0x0F); 
-	write_port(0x3D5, (unsigned char)(pos & 0xFF));
-	write_port(0x3D4, 0x0E); 
-	write_port(0x3D5, (unsigned char)((pos >> 8) & 0xFF));
-}
-
 void kmain(void)
 {
 	idt_init();
